@@ -24,16 +24,15 @@ const CharList = (props) => {
     };
 
     const onCharListLoaded = (newCharList) => {
-
         let ended = false;
         if (newCharList.length < 9) {
             ended = true;
         }
 
         setCharList(charList => [...charList, ...newCharList]);
-        setNewItemLoading(newItemLoading => false);
+        setNewItemLoading(false);
         setOffset(offset => offset + 9);
-        setCharEnded(charEnded => ended);
+        setCharEnded(ended);
     };
 
     const itemRefs = useRef([]);
@@ -70,14 +69,14 @@ const CharList = (props) => {
                     <img src={item.thumbnail} alt={item.name} style={imgStyle} />
                     <div className="char__name">{item.name}</div>
                 </li>
-            )
+            );
         });
 
         return (
             <ul className="char__grid">
                 {items}
             </ul>
-        )
+        );
     }
 
     const items = renderItems(charList);
@@ -98,7 +97,7 @@ const CharList = (props) => {
                 <div className="inner">load more</div>
             </button>
         </div>
-    )
+    );
 }
 
 export default CharList;
